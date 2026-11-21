@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./fonts.css">
+    
+    <title>Baseball Counter App</title>
+
+    <style>
+        :root{
+            --bg:#f4f4f9;
+            --card:#ffffff;
+            --text:#1a1a1a;
+            --primary:#246db5;
+            --primary-hover:#1d5a96;
+        }
+        .dark{
+            --bg:#111827;
+            --card:#1f2937;
+            --text:#f3f4f6;
+            --primary:#246db5;
+            --primary-hover:#5cadff;
+        }
+        *{
+            box-sizing:border-box;
+        }
+        body{
+            font-family:Arial,sans-serif;
+            text-align:center;
+            background-color:var(--bg);
+            color:var(--text);
+            transition:.3s;
+            min-height:100vh;
+            padding:50px 20px;
+        }
+        .container{
+            max-width:400px;
+            margin:auto;
+        }
+        h1{
+            margin-bottom:20px;
+        }
+        .theme-container{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            gap:12px;
+            margin-bottom:30px;
+        }
+        .theme-toggle{
+            position:relative;
+            width:56px;
+            height:32px;
+            border:none;
+            border-radius:999px;
+            background:#d1d5db;
+            cursor:pointer;
+            transition:.3s;
+        }
+        .theme-toggle-knob{
+            position:absolute;
+            top:4px;
+            left:4px;
+            width:24px;
+            height:24px;
+            border-radius:50%;
+            background:white;
+            transition:.3s;
+        }
+        .theme-toggle.dark{
+            background:#246db5;
+        }
+        .theme-toggle.dark .theme-toggle-knob{
+            transform:translateX(24px);
+        }
+        .menu-list{
+            display:flex;
+            flex-direction:column;
+            gap:15px;
+        }
+        .menu-btn{
+            background-color:var(--primary);
+            color:white;
+            padding:15px;
+            text-decoration:none;
+            border-radius:12px;
+            font-size:18px;
+            font-weight:bold;
+            transition:.3s;
+            box-shadow:0 4px 12px rgba(0,0,0,.15);
+        }
+        .menu-btn:hover{
+            background-color:var(--primary-hover);
+            transform:translateY(-2px);
+        }
+        .small-text{
+            font-size:14px;
+            opacity:.8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>⚾ Baseball Counter App</h1>
+        <div class="theme-container">
+            <span>☀️</span>
+            <button id="theme-toggle" class="theme-toggle">
+                <span class="theme-toggle-knob"></span>
+            </button>
+            <span>🌙</span>
+        </div>
+        <br>
+        <div class="menu-list">
+            <a href="Scoreboard.html" class="menu-btn">Scoreboard</a>
+
+            <a href="PitchCounter.html" class="menu-btn">Pitch Counter</a>
+
+            <a href="SimpleStrikeCounter.html" class="menu-btn">Simple Strike Counter</a>
+
+            <a href="AdvancedStrikeCounter.html" class="menu-btn">Advanced Strike Counter</a>
+
+            <a href="readme.html" class="menu-btn" style="margin: auto; margin-top: 15%; max-width: 60%; min-width: 50%;">Readme</a>
+        </div>
+    </div>
+
+    <script>
+        const htmlEl = document.documentElement;
+        const themeToggle = document.getElementById('theme-toggle');
+
+        function applyTheme(theme){
+            if(theme === 'dark'){
+                htmlEl.classList.add('dark');
+                themeToggle.classList.add('dark');
+            }
+            else{
+                htmlEl.classList.remove('dark');
+                themeToggle.classList.remove('dark');
+            }
+        }
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+
+        applyTheme(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme =
+                htmlEl.classList.contains('dark')
+                    ? 'light'
+                    : 'dark';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js');
+        }
+    </script>
+</body>
+</html>

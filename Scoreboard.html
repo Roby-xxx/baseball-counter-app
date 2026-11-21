@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoreboard</title>
+    <link rel="stylesheet" href="./fonts.css">
+    <script src="./tailwind.js"></script>
+    
+    <style>
+        html {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .scoreboard-font {
+            font-family: 'Inter', sans-serif;
+            font-variant-numeric: tabular-nums;
+        }
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type=number] {
+            appearance: textfield;
+            -moz-appearance: textfield;
+        }
+        .table-cell-size {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+        @media (min-width: 640px) {
+            .table-cell-size {
+                width: 4rem;
+                height: 4rem;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'orbitron': ['Inter', 'sans-serif'],
+                        'roboto': ['Inter', 'sans-serif'],                    },
+                }
+            }
+        }
+    </script>
+
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 min-h-screen flex flex-col items-center">
+        
+        <div class="w-full max-w-4xl flex items-center justify-between mb-4">
+            <a href="./index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-gray-800 text-[#246db5] font-semibold text-sm shadow hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                <span>←</span>
+                <span>Home</span>
+            </a>
+            <h1 class="text-xl sm:text-3xl font-bold text-[#246db5]">
+                Scoreboard
+            </h1>
+            <div class="w-16"></div> <!-- Spazio vuoto per tenere il titolo centrato -->
+        </div>
+        <main class="w-full max-w-4xl bg-white dark:bg-gray-800 shadow-2xl rounded-2xl overflow-hidden">
+            <div class="overflow-x-auto">
+                <table id="scoreboard-table" class="w-full text-center text-sm sm:text-lg scoreboard-font">
+                    <thead class="bg-[#246db5] text-white uppercase tracking-wider">
+                        <tr id="header-row">
+                            <th scope="col" class="p-2 sm:p-4 font-semibold text-left">Team</th>
+                            <th scope="col" class="p-2 sm:p-4 font-semibold table-cell-size inning-header">1</th>
+                            <th scope="col" class="p-2 sm:p-4 font-semibold table-cell-size inning-header">2</th>
+                            <th scope="col" class="p-2 sm:p-4 font-semibold table-cell-size inning-header">3</th>
+                            <th scope="col" class="p-2 sm:p-4 font-semibold table-cell-size inning-header">4</th>
+                            <th scope="col" class="p-2 sm:p-4 font-semibold table-cell-size inning-header">5</th>
+                            <th scope="col" class="p-2 sm:p-4 font-semibold table-cell-size inning-header">6</th>
+                            <th scope="col" class="p-2 sm:p-4 font-semibold table-cell-size inning-header">7</th>
+                            <th scope="col" class="p-2 sm:p-4 font-semibold table-cell-size inning-header">8</th>
+                            <th scope="col" class="p-2 sm:p-4 font-semibold table-cell-size inning-header">9</th>
+                            <th scope="col" class="p-2 sm:p-4 font-semibold table-cell-size border-l-2 border-gray-300 dark:border-gray-600">R</th>
+                        </tr>
+                    </thead>
+                    <tbody class="font-bold text-xl sm:text-3xl">
+                        <!-- Road Team -->
+                        <tr id="road-row" class="border-b border-gray-200 dark:border-gray-700">
+                            <th scope="row" class="p-2 sm:p-4 text-left font-semibold text-gray-900 dark:text-white" style="font-size: 80%;">Road</th>
+                            <td><input type="number" min="0" class="inning-score road-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score road-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score road-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score road-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score road-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score road-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score road-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score road-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score road-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td id="road-total" class="p-2 sm:p-4 border-l-2 border-gray-300 dark:border-gray-600">0</td>
+                        </tr>
+                        <!-- Home Team -->
+                        <tr id="home-row">
+                            <th scope="row" class="p-2 sm:p-4 text-left font-semibold text-gray-900 dark:text-white" style="font-size: 80%;">Home</th>
+                            <td><input type="number" min="0" class="inning-score home-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score home-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score home-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score home-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score home-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score home-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score home-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score home-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td><input type="number" min="0" class="inning-score home-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded"></td>
+                            <td id="home-total" class="p-2 sm:p-4 border-l-2 border-gray-300 dark:border-gray-600">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <div class="mt-6 flex gap-4">
+            <button
+                id="add-inning-btn"
+                class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-all duration-200">
+                + Extra Inning
+            </button>
+            <button
+                id="reset-match-btn"
+                class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition-all duration-200">
+                Reset Game
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme global from index
+            document.documentElement.classList.toggle('dark', localStorage.getItem('theme') === 'dark');
+        
+            const headerRow = document.getElementById('header-row');
+            const roadRow = document.getElementById('road-row');
+            const homeRow = document.getElementById('home-row');
+            const roadTotalEl = document.getElementById('road-total');
+            const homeTotalEl = document.getElementById('home-total');
+            const resetMatchBtn = document.getElementById('reset-match-btn');
+            const addInningBtn = document.getElementById('add-inning-btn');
+        
+            let totalInnings = 9;
+        
+            // Funzione per aggiungere un nuovo inning (colonna)
+            const addInningColumn = (roadVal = '', homeVal = '') => {
+                totalInnings++;
+            
+                // 1. Aggiungi intestazione th prima della colonna "R"
+                const rHeader = headerRow.lastElementChild;
+                const newTh = document.createElement('th');
+                newTh.scope = 'col';
+                newTh.className = 'p-2 sm:p-4 font-medium table-cell-size inning-header';
+                newTh.textContent = totalInnings;
+                headerRow.insertBefore(newTh, rHeader);
+            
+                // 2. Aggiungi input per Trasferta (Road) prima del totale
+                const roadTotalTd = roadRow.lastElementChild;
+                const newRoadTd = document.createElement('td');
+                newRoadTd.innerHTML = `<input type="number" min="0" value="${roadVal}" class="inning-score road-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded">`;
+                roadRow.insertBefore(newRoadTd, roadTotalTd);
+            
+                // 3. Aggiungi input per Casa (Home) prima del totale
+                const homeTotalTd = homeRow.lastElementChild;
+                const newHomeTd = document.createElement('td');
+                newHomeTd.innerHTML = `<input type="number" min="0" value="${homeVal}" class="inning-score home-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded">`;
+                homeRow.insertBefore(newHomeTd, homeTotalTd);
+            
+                // Aggiungi gli event listener ai nuovi input creati
+                attachInputListeners();
+            };
+        
+            const calculateTotal = (inputs) => {
+                let total = 0;
+                inputs.forEach(input => {
+                    const value = parseInt(input.value, 10);
+                    if (!isNaN(value) && value >= 0) {
+                        total += value;
+                    }
+                });
+                return total;
+            };
+        
+            const updateTotals = () => {
+                const roadScores = document.querySelectorAll('.road-score');
+                const homeScores = document.querySelectorAll('.home-score');
+            
+                roadTotalEl.textContent = calculateTotal(roadScores);
+                homeTotalEl.textContent = calculateTotal(homeScores);
+            };
+        
+            const saveScoreboard = () => {
+                const roadScores = document.querySelectorAll('.road-score');
+                const homeScores = document.querySelectorAll('.home-score');
+            
+                const data = {
+                    totalInnings: totalInnings,
+                    roadScores: [...roadScores].map(input => input.value),
+                    homeScores: [...homeScores].map(input => input.value)
+                };
+            
+                localStorage.setItem('baseballScoreboard', JSON.stringify(data));
+            };
+        
+            const attachInputListeners = () => {
+                document.querySelectorAll('.inning-score').forEach(input => {
+                    // Rimuovi eventuali listener duplicati se riassegnati
+                    input.removeEventListener('input', handleInputChange);
+                    input.addEventListener('input', handleInputChange);
+                });
+            };
+        
+            const handleInputChange = () => {
+                updateTotals();
+                saveScoreboard();
+            };
+        
+            const resetMatch = () => {
+                // Rimuovi tutte le colonne oltre la 9
+                while (totalInnings > 9) {
+                    headerRow.cells[headerRow.cells.length - 2].remove();
+                    roadRow.cells[roadRow.cells.length - 2].remove();
+                    homeRow.cells[homeRow.cells.length - 2].remove();
+                    totalInnings--;
+                }
+            
+                document.querySelectorAll('.inning-score').forEach(input => {
+                    input.value = '';
+                });
+            
+                localStorage.removeItem('baseballScoreboard');
+                updateTotals();
+            };
+        
+            const loadScoreboard = () => {
+                const saved = localStorage.getItem('baseballScoreboard');
+                if (!saved) return;
+            
+                const data = JSON.parse(saved);
+                const savedInnings = data.totalInnings || 9;
+            
+                // Ricrea gli inning extra salvati (dalla 10 in poi)
+                for (let i = 10; i <= savedInnings; i++) {
+                    const index = i - 1;
+                    addInningColumn(data.roadScores?.[index] || '', data.homeScores?.[index] || '');
+                }
+            
+                // Popola i primi 9 inning standard
+                const roadScores = document.querySelectorAll('.road-score');
+                const homeScores = document.querySelectorAll('.home-score');
+            
+                roadScores.forEach((input, index) => {
+                    input.value = data.roadScores?.[index] || '';
+                });
+            
+                homeScores.forEach((input, index) => {
+                    input.value = data.homeScores?.[index] || '';
+                });
+            };
+        
+            // Gestione click pulsante "+ Extra Inning"
+            addInningBtn.addEventListener('click', () => {
+                addInningColumn();
+                saveScoreboard();
+            });
+        
+            resetMatchBtn.addEventListener('click', resetMatch);
+        
+            // Inizializzazione
+            loadScoreboard();
+            attachInputListeners();
+            updateTotals();
+        
+        });
+    </script>
+</body>
+</html>
+

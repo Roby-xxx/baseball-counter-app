@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch Counter</title>
+    <link rel="stylesheet" href="./fonts.css">
+    <script src="./tailwind.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .font-numeric {
+            font-family: 'Inter', sans-serif;
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#246db5',
+                        'secondary': '#5cadff',
+                        'light-bg': '#f3f4f6',
+                        'light-text': '#1a1a1a',
+                        'dark-bg': '#111827',
+                        'dark-text': '#e5e7eb',
+                        'light-card': '#ffffff',
+                        'dark-card': '#1f2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text transition-colors duration-500">
+
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+        <div class="w-full max-w-md mx-auto mb-3 flex justify-start">
+            <a href="./index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-light-card dark:bg-dark-card text-primary font-semibold text-sm shadow hover:opacity-80 transition-opacity">
+                <span>←</span>
+                <span>Home</span>
+            </a>
+        </div>
+        <div class="w-full max-w-md mx-auto bg-light-card dark:bg-dark-card rounded-2xl shadow-2xl p-6 md:p-8 transition-colors duration-500">
+            <h1 class="text-2xl md:text-3xl font-bold text-primary" style="text-align: center; margin-bottom: 1rem;">Pitch Counter</h1>
+            <!-- Counters -->
+            <div class="grid grid-cols-2 gap-4 md:gap-6 text-center mb-6">
+                <div>
+                    <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Pitches</p>
+                    <p id="pitch-count" class="font-numeric text-6xl md:text-8xl font-bold text-light-text dark:text-dark-text">0</p>
+                </div>
+                <div>
+                    <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Strikes</p>
+                    <p id="strike-count" class="font-numeric text-6xl md:text-8xl font-bold text-primary">0</p>
+                </div>
+            </div>
+
+            <!-- Strike Rate -->
+            <div class="text-center mb-8">
+                <p class="text-lg font-semibold text-gray-600 dark:text-gray-300">
+                    Strike Rate: <span id="strike-rate" class="font-numeric font-bold text-secondary">0.0%</span>
+                </p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button id="ball-btn" class="w-full py-4 px-6 bg-gray-200 dark:bg-gray-600 text-light-text dark:text-dark-text font-bold text-xl rounded-lg shadow-md hover:bg-gray-300 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 dark:focus:ring-offset-dark-card transition-all duration-200 ease-in-out transform hover:scale-105">
+                    Ball
+                </button>
+                <button id="strike-btn" class="w-full py-4 px-6 bg-primary text-white font-bold text-xl rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-dark-card transition-all duration-200 ease-in-out transform hover:scale-105">
+                    Strike
+                </button>
+            </div>
+            
+            <!-- Reset Button -->
+            <div class="text-center mt-6">
+                <button id="reset-btn" class="w-fit py-2 px-3 bg-gray-500 text-white font-bold text-sm rounded-lg shadow-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary dark:focus:ring-offset-dark-card transition-all duration-200 ease-in-out transform hover:scale-105">
+                    Reset Pitch
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme global from index
+            document.documentElement.classList.toggle('dark', localStorage.getItem('theme') === 'dark');
+
+            // State (Caricamento iniziale da localStorage se presente)
+            let pitchCount = parseInt(localStorage.getItem('pitchCount'), 10) || 0;
+            let strikeCount = parseInt(localStorage.getItem('strikeCount'), 10) || 0;
+
+            // DOM Elements
+            const pitchCountEl = document.getElementById('pitch-count');
+            const strikeCountEl = document.getElementById('strike-count');
+            const strikeRateEl = document.getElementById('strike-rate');
+            const ballBtn = document.getElementById('ball-btn');
+            const strikeBtn = document.getElementById('strike-btn');
+            const resetBtn = document.getElementById('reset-btn');
+
+            // Funzione di salvataggio su localStorage
+            const saveData = () => {
+                localStorage.setItem('pitchCount', pitchCount);
+                localStorage.setItem('strikeCount', strikeCount);
+            };
+
+            // Functions
+            const updateDisplay = () => {
+                pitchCountEl.textContent = pitchCount;
+                strikeCountEl.textContent = strikeCount;
+
+                const rate = pitchCount === 0 ? 0 : (strikeCount / pitchCount) * 100;
+                strikeRateEl.textContent = `${rate.toFixed(1)}%`;
+            };
+
+            const handleBall = () => {
+                pitchCount++;
+                updateDisplay();
+                saveData();
+            };
+
+            const handleStrike = () => {
+                pitchCount++;
+                strikeCount++;
+                updateDisplay();
+                saveData();
+            };
+            
+            const handleReset = () => {
+                pitchCount = 0;
+                strikeCount = 0;
+                updateDisplay();
+                // Rimuove o azzera i dati salvati
+                localStorage.removeItem('pitchCount');
+                localStorage.removeItem('strikeCount');
+            };
+
+            // Event Listeners
+            ballBtn.addEventListener('click', handleBall);
+            strikeBtn.addEventListener('click', handleStrike);
+            resetBtn.addEventListener('click', handleReset);
+
+            // Initial Display
+            updateDisplay();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guida & Info - BCA</title>
+    <link rel="stylesheet" href="./fonts.css">
+    <script src="./tailwind.js"></script>
+    <style>
+        html { -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { 'primary': '#246db5', 'secondary': '#5cadff' } } }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 min-h-screen flex flex-col items-center">
+        <div class="w-full max-w-2xl flex items-center justify-between mb-6">
+            <a href="./index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-gray-800 text-[#246db5] font-semibold text-sm shadow">← Home</a>
+            <h1 class="text-xl sm:text-2xl font-bold text-[#246db5]">Info & Guida App</h1>
+            <div class="w-16"></div>
+        </div>
+        <main class="w-full max-w-2xl bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-6 sm:p-8 space-y-6">
+            <section>
+                <div class="flex items-center gap-3 mb-2">
+                    <img src="./icona.png" alt="BCA Logo" class="w-14 h-14 rounded-full">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white px-3">Baseball Counter App</h2>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 text-justify"><strong>BCA</strong> è una web app leggera e installabile. Permette di gestire facilmente il conteggio dei lanci, il conto a casa, outs, innings e il tabellone segnapunti, funzionante anche offline.</p>
+            </section>
+            <hr class="border-gray-200 dark:border-gray-700">
+            <section>
+                <h3 class="text-sm font-bold text-[#246db5] mb-3">✨ Funzionalità principali</h3>
+                <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+                    <li class="text-sm text-justify"><strong>Scoreboard:</strong> Tabellone segnapunti per inning con totali automatici ed extra innings.</li>
+                    <li class="text-sm text-justify"><strong>Pitch Counter:</strong> Conteggio lanci e strike con calcolo dello Strike Rate.</li>
+                    <li class="text-sm text-justify"><strong>Simple Strike Counter:</strong> Gestione dei balls, strikes, outs ed innings con azzeramento manuale (come il conta strike fisico).</li>
+                    <li class="text-sm text-justify"><strong>Advanced Strike Counter:</strong> Gestione dei balls, strikes, outs ed innings con aggiornamento automatico: al quarto ball azzera il conto, al terzo strike azzera il conto e aggiunge un out, al terzo out azzera i conti e avanza di mezzo inning.</li>
+                    <li class="text-sm text-justify"><strong>100% Offline:</strong> Risorse memorizzate localmente.</li>
+                </ul>
+            </section>
+            <hr class="border-gray-200 dark:border-gray-700">
+            <section>
+                <h3 class="text-sm font-bold text-[#246db5] mb-3">📱 Come installarla sul telefono</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl">
+                        <h4 class="font-bold text-gray-900 dark:text-white mb-1.5">Android (Chrome)</h4>
+                        <ol class="text-sm text-gray-600 dark:text-gray-300 space-y-1 list-decimal list-inside">
+                            <li>Apri l'app su Chrome</li>
+                            <li>Tocca i <strong>tre puntini</strong></li>
+                            <li>Seleziona <strong>Installa app</strong> o <strong>Aggiungi a schermata Home</strong></li>
+                        </ol>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl">
+                        <h4 class="font-bold text-gray-900 dark:text-white mb-1.5">iPhone / iPad (Safari)</h4>
+                        <ol class="text-sm text-gray-600 dark:text-gray-300 space-y-1 list-decimal list-inside">
+                            <li>Apri l'app su Safari</li>
+                            <li>Tocca <strong>Condividi</strong></li>
+                            <li>Seleziona <strong>Aggiungi alla schermata Home</strong></li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h3 class="text-sm font-bold text-[#246db5] mb-3">Tecnologie utilizzate</h3>
+                <ul class="text-justify">
+                    <li class="text-sm text-justify"><strong>HTML5 & JavaScript Vanilla:</strong> Struttura leggera e reattiva senza dipendenze pesanti.</li>
+                    <li class="text-sm text-justify"><strong>Tailwind CSS (Locale):</strong> Stile moderno e responsive caricato localmente per garantire il funzionamento offline.</li>
+                    <li class="text-sm text-justify"><strong>Font Locali (Inter):</strong> Tipografia pulita e ad alta leggibilità con numeri tabellari, caricato localmente per garantire il funzionamento offline.</li>
+                    <li class="text-sm text-justify"><strong>PWA (Manifest + Service Worker):</strong> Caching locale per l'utilizzo senza rete e installazione nativa su dispositivi mobili.</li>
+                </ul>
+            </section>
+            <div class="pt-2 text-center text-xs text-gray-400">Versione 1.0 • Licenza MIT</div>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme global from index
+            document.documentElement.classList.toggle('dark', localStorage.getItem('theme') === 'dark');
+        });
+    </script>
+</body>
+</html>

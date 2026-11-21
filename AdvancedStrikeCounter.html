@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Strike Counter</title>
+    <script src="./tailwind.js"></script>
+
+    <script>
+        tailwind.config = {darkMode: 'class'}
+    </script>
+
+    <link rel="stylesheet" href="./fonts.css">
+
+    <style>
+        body {
+            font-family:'Inter',sans-serif;
+            -webkit-tap-highlight-color:transparent;
+            touch-action:manipulation;
+        }
+        :root {
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+        
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7280;
+        
+            --btn-primary-bg: #246db5;
+            --btn-primary-text: #ffffff;
+        
+            --btn-secondary-bg: #5cadff;
+            --btn-secondary-text: #ffffff;
+        
+            --indicator-empty-bg: #d1d5db;
+        
+            --indicator-ball-bg: #22c55e;
+            --indicator-strike-bg: #ef4444;
+            --indicator-out-bg: #f97316;
+        
+            --toggle-bg: #d1d5db;
+            --toggle-knob: #ffffff;
+        }
+        .dark {
+            --bg-color: #111827;
+            --card-bg: #1f2937;
+
+            --text-primary: #e5e7eb;
+            --text-secondary: #9ca3af;
+
+            --btn-primary-bg: #246db5;
+            --btn-primary-text: white;
+
+            --btn-secondary-bg: #374151;
+            --btn-secondary-text: white;
+
+            --indicator-empty-bg: #374151;
+
+            --toggle-bg: #5cadff;
+            --toggle-knob: white;
+        }
+        .indicator {
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn {
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease-out;
+            --hover: opacity-90;
+            --transition-all: duration-200;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex items-center justify-center p-4 transition-colors duration-500">
+
+    <div class="w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 flex flex-col space-y-6 transition-colors duration-500">
+        <div class="w-full max-w-md mx-auto flex justify-start">
+            <a href="./index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-light-card dark:bg-dark-card text-primary font-semibold text-sm shadow hover:opacity-80 transition-opacity">
+                <span>←</span>
+                <span>Home</span>
+            </a>
+        </div>
+
+        <!-- Header: Inning and Theme Toggle -->
+        <header class="flex justify-between items-center mb-1">
+            <h1 class="text-2xl font-bold text-[#246db5]" style="margin: auto; margin-top: 0.1rem;">
+                Advanced Strike Counter
+            </h1>
+        </header>
+        <!-- Inning Display -->
+        <div id="inning-display" class="text-center bg-[var(--card-bg)] rounded-lg px-4 py-1 shadow-md transition-colors duration-300">
+            <div id="inning-half" class="text-sm font-bold tracking-wider uppercase text-[var(--text-secondary)] transition-colors duration-300">TOP</div>
+            <div id="inning-number" class="text-5xl font-extrabold">1</div>
+        </div>
+         <!-- Main Display: Counts -->
+        <main class="flex-grow flex flex-col justify-center bg-[var(--card-bg)] rounded-2xl shadow-2xl p-6 transition-colors duration-300">
+            <!-- Outs -->
+            <div class="text-center mb-2">
+                <h2 class="text-2xl font-bold tracking-wider uppercase text-[var(--text-secondary)] transition-colors duration-300">Outs</h2>
+                <div id="outs-indicators" class="flex justify-center items-center space-x-4 mt-2">
+                    <div class="indicator h-6 w-6 rounded-full bg-[var(--indicator-empty-bg)]"></div>
+                    <div class="indicator h-6 w-6 rounded-full bg-[var(--indicator-empty-bg)]"></div>
+                </div>
+            </div>
+
+            <!-- Balls & Strikes -->
+            <div class="grid grid-cols-2 gap-6">
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold tracking-wider uppercase text-[var(--text-secondary)] transition-colors duration-300">Balls</h2>
+                    <div id="balls-indicators" class="flex justify-center items-center space-x-3 mt-3">
+                        <div class="indicator h-5 w-5 rounded-full bg-[var(--indicator-empty-bg)]"></div>
+                        <div class="indicator h-5 w-5 rounded-full bg-[var(--indicator-empty-bg)]"></div>
+                        <div class="indicator h-5 w-5 rounded-full bg-[var(--indicator-empty-bg)]"></div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold tracking-wider uppercase text-[var(--text-secondary)] transition-colors duration-300">Strikes</h2>
+                    <div id="strikes-indicators" class="flex justify-center items-center space-x-3 mt-3">
+                        <div class="indicator h-5 w-5 rounded-full bg-[var(--indicator-empty-bg)]"></div>
+                        <div class="indicator h-5 w-5 rounded-full bg-[var(--indicator-empty-bg)]"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Action Buttons -->
+        <footer class="mt-2">
+            <div class="grid grid-cols-2 gap-3">
+                <button id="ball-btn" class="btn col-span-1 text-2xl font-bold py-8 rounded-xl shadow-md bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] active:scale-95">BALL</button>
+                <button id="strike-btn" class="btn col-span-1 text-2xl font-bold py-8 rounded-xl shadow-md bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] active:scale-95">STRIKE</button>
+            </div>
+            <div class="grid grid-cols-2 gap-3 mt-3">
+                <button id="out-btn" class="btn col-span-1 text-xl font-bold py-5 rounded-xl shadow-md bg-[var(--btn-secondary-bg)] text-[var(--btn-secondary-text)] active:scale-95">OUT</button>
+                <button id="new-batter-btn"
+                    class="btn bg-gray-500 text-white py-4 font-semibold rounded-xl shadow-md hover:bg-gray-600">
+                    NEW BATTER
+                </button>
+            </div>
+            <div class="grid grid-cols-1 gap-3 mt-3">
+                <button id="reset-btn" 
+                    class="btn col-span-1 text-sm font-bold py-3 rounded-xl shadow-md bg-gray-500 text-[var(--btn-secondary-text)] active:scale-95"
+                    style="max-width: 45%; margin: auto; padding: 15px 20px;">
+                    RESET GAME
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme global from index
+            document.documentElement.classList.toggle('dark', localStorage.getItem('theme') === 'dark');
+
+            // --- STATE (Caricamento da localStorage se disponibile) ---
+            let balls = parseInt(localStorage.getItem('adv_balls'), 10) || 0;
+            let strikes = parseInt(localStorage.getItem('adv_strikes'), 10) || 0;
+            let outs = parseInt(localStorage.getItem('adv_outs'), 10) || 0;
+            let inning = parseInt(localStorage.getItem('adv_inning'), 10) || 1;
+            let isTopInning = localStorage.getItem('adv_isTopInning') !== null ? JSON.parse(localStorage.getItem('adv_isTopInning')) : true;
+
+            // --- DOM ELEMENTS ---
+            const ballBtn = document.getElementById('ball-btn');
+            const strikeBtn = document.getElementById('strike-btn');
+            const outBtn = document.getElementById('out-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const newBatterBtn = document.getElementById('new-batter-btn');
+
+            const inningHalfEl = document.getElementById('inning-half');
+            const inningNumberEl = document.getElementById('inning-number');
+            const ballIndicators = document.querySelectorAll('#balls-indicators .indicator');
+            const strikeIndicators = document.querySelectorAll('#strikes-indicators .indicator');
+            const outIndicators = document.querySelectorAll('#outs-indicators .indicator');
+
+            // --- FUNZIONE DI SALVATAGGIO ---
+            const saveData = () => {
+                localStorage.setItem('adv_balls', balls);
+                localStorage.setItem('adv_strikes', strikes);
+                localStorage.setItem('adv_outs', outs);
+                localStorage.setItem('adv_inning', inning);
+                localStorage.setItem('adv_isTopInning', isTopInning);
+            };
+
+            const updateUI = () => {
+                // Update Inning
+                inningHalfEl.textContent = isTopInning ? 'TOP' : 'BOTTOM';
+                inningNumberEl.textContent = inning;
+
+                // Update Indicators
+                updateIndicators(ballIndicators, balls, 'var(--indicator-ball-bg)');
+                updateIndicators(strikeIndicators, strikes, 'var(--indicator-strike-bg)');
+                updateIndicators(outIndicators, outs, 'var(--indicator-out-bg)');
+
+                // Salva lo stato a ogni aggiornamento dell'interfaccia
+                saveData();
+            };
+
+            const updateIndicators = (indicators, count, activeColor) => {
+                indicators.forEach((indicator, index) => {
+                    if (index < count) {
+                        indicator.style.backgroundColor = activeColor;
+                        indicator.style.transform = 'scale(1.1)';
+                    } else {
+                        indicator.style.backgroundColor = 'var(--indicator-empty-bg)';
+                        indicator.style.transform = 'scale(1)';
+                    }
+                });
+            };
+
+            const handleNewBatter = () => {
+                balls = 0;
+                strikes = 0;
+                localStorage.removeItem('adv_balls');
+                localStorage.removeItem('adv_strikes');
+                updateUI();
+            };
+
+            const resetCounts = () => {
+                balls = 0;
+                strikes = 0;
+            };
+
+            const advanceInning = () => {
+                outs = 0;
+                resetCounts();
+                if (isTopInning) {
+                    isTopInning = false;
+                } else {
+                    isTopInning = true;
+                    inning++;
+                }
+            };
+
+            const handleBall = () => {
+                if (balls < 3) {
+                    balls++;
+                } else {
+                    // Walk
+                    resetCounts();
+                }
+                updateUI();
+            };
+
+            const handleStrike = () => {
+                if (strikes < 2) {
+                    strikes++;
+                } else {
+                    // Third strike is an out
+                    handleOut();
+                }
+                updateUI();
+            };
+
+            const handleOut = () => {
+                resetCounts();
+                if (outs < 2) {
+                    outs++;
+                } else {
+                    // Third out, advance inning
+                    advanceInning();
+                }
+                updateUI();
+            };
+
+            const handleReset = () => {
+                balls = 0;
+                strikes = 0;
+                outs = 0;
+                inning = 1;
+                isTopInning = true;
+
+                // Rimuove i dati da localStorage
+                localStorage.removeItem('adv_balls');
+                localStorage.removeItem('adv_strikes');
+                localStorage.removeItem('adv_outs');
+                localStorage.removeItem('adv_inning');
+                localStorage.removeItem('adv_isTopInning');
+
+                updateUI();
+            };
+
+            ballBtn.addEventListener('click', handleBall);
+            strikeBtn.addEventListener('click', handleStrike);
+            outBtn.addEventListener('click', handleOut);
+            resetBtn.addEventListener('click', handleReset);
+            newBatterBtn.addEventListener('click', handleNewBatter);
+
+            // Initial render
+            updateUI();
+        });
+    </script>
+</body>
+</html>

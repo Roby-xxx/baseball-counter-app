@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Strike Counter</title>
+
+    <script src="./tailwind.js"></script>
+
+    <script>
+        tailwind.config = {darkMode: 'class'}
+    </script>
+
+    <link rel="stylesheet" href="./fonts.css">
+
+    <style>
+        body {
+            font-family:'Inter',sans-serif;
+            -webkit-tap-highlight-color:transparent;
+            touch-action:manipulation;
+        }
+        .count-number {
+            font-family:'Roboto Mono',monospace;
+        }
+        .btn {
+            transition:
+                transform .1s ease,
+                background-color .2s ease;
+        }
+        .btn:active {
+            transform:scale(.95);
+        }
+        @keyframes flash-animation {
+            0% {
+                transform:scale(1);
+                opacity:1;
+            }
+            50% {
+                transform:scale(1.15);
+                opacity:.8;
+            }
+            100% {
+                transform:scale(1);
+                opacity:1;
+            }
+        }
+        .flash {
+            animation:flash-animation .2s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex items-center justify-center p-4 transition-colors duration-500">
+
+    <div class="w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 flex flex-col space-y-6 transition-colors duration-500">
+        <div class="w-full max-w-md mx-auto mb-1 flex justify-start">
+            <a href="./index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-light-card dark:bg-dark-card text-primary font-semibold text-sm shadow hover:opacity-80 transition-opacity">
+                <span>←</span>
+                <span>Home</span>
+            </a>
+        </div>
+
+        <header class="flex items-center justify-between">
+            <h1 class="text-2xl font-bold text-[#246db5]" style="margin: auto;">
+                Simple Strike Counter
+            </h1>
+        </header>
+
+        <!-- INNING -->
+        <div class="text-center p-4 bg-gray-100 dark:bg-gray-700 rounded-xl shadow-inner">
+            <h2 class="text-lg font-semibold uppercase tracking-widest text-gray-500 dark:text-gray-300">
+                Inning
+            </h2>
+            <p id="inning-count"
+               class="count-number text-6xl font-bold text-[#246db5]">
+                1
+            </p>
+        </div>
+
+        <!-- COUNTERS -->
+        <div class="grid grid-cols-3 gap-4 text-center">
+            <div>
+                <h3 class="text-base font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                    Balls
+                </h3>
+                <p id="ball-count"
+                   class="count-number text-7xl font-bold leading-none">
+                    0
+                </p>
+            </div>
+
+            <div>
+                <h3 class="text-base font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                    Strikes
+                </h3>
+                <p id="strike-count"
+                   class="count-number text-7xl font-bold leading-none">
+                    0
+                </p>
+            </div>
+
+            <div>
+                <h3 class="text-base font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                    Outs
+                </h3>
+                <p id="out-count"
+                   class="count-number text-7xl font-bold leading-none">
+                    0
+                </p>
+            </div>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="space-y-4">
+            <div class="grid grid-cols-3 gap-3">
+                <button id="ball-btn"
+                    class="btn bg-green-500 text-white py-4 text-xl font-bold rounded-xl shadow-md hover:bg-green-600">
+                    Ball
+                </button>
+
+                <button id="strike-btn"
+                    class="btn bg-red-600 text-white py-4 text-xl font-bold rounded-xl shadow-md hover:bg-red-700">
+                    Strike
+                </button>
+
+                <button id="out-btn"
+                    class="btn bg-[#246db5] text-white py-4 text-xl font-bold rounded-xl shadow-md hover:bg-blue-700">
+                    Out
+                </button>
+            </div>
+            <div class="grid grid-cols-1 gap-3">
+                <button id="next-inning-btn"
+                    class="btn bg-gray-700 text-white py-4 font-semibold rounded-xl shadow-md hover:bg-gray-800"
+                    style="margin: auto; min-width: 30%;">
+                    + Inning
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme global from index
+            document.documentElement.classList.toggle('dark', localStorage.getItem('theme') === 'dark');
+
+            // --- STATE (Caricamento da localStorage se disponibile) ---
+            let balls = parseInt(localStorage.getItem('simple_balls'), 10) || 0;
+            let strikes = parseInt(localStorage.getItem('simple_strikes'), 10) || 0;
+            let outs = parseInt(localStorage.getItem('simple_outs'), 10) || 0;
+            let innings = parseInt(localStorage.getItem('simple_innings'), 10) || 1;
+
+            const ballCountEl = document.getElementById('ball-count');
+            const strikeCountEl = document.getElementById('strike-count');
+            const outCountEl = document.getElementById('out-count');
+            const inningCountEl = document.getElementById('inning-count');
+
+            const ballBtn = document.getElementById('ball-btn');
+            const strikeBtn = document.getElementById('strike-btn');
+            const outBtn = document.getElementById('out-btn');
+            const nextInningBtn = document.getElementById('next-inning-btn');
+
+            // --- FUNZIONE DI SALVATAGGIO ---
+            const saveData = () => {
+                localStorage.setItem('simple_balls', balls);
+                localStorage.setItem('simple_strikes', strikes);
+                localStorage.setItem('simple_outs', outs);
+                localStorage.setItem('simple_innings', innings);
+            };
+
+            function updateDisplay() {
+                ballCountEl.textContent = balls;
+                strikeCountEl.textContent = strikes;
+                outCountEl.textContent = outs;
+                inningCountEl.textContent = innings;
+                // Salva automaticamente a ogni aggiornamento
+                saveData();
+            }
+
+            function flashElement(el) {
+                el.classList.add('flash');
+                setTimeout(() => {
+                    el.classList.remove('flash');
+                }, 200);
+            }
+
+            function resetBatter() {
+                balls = 0;
+                strikes = 0;
+
+                updateDisplay();
+
+                flashElement(ballCountEl);
+                flashElement(strikeCountEl);
+            }
+
+            function resetHalfInning() {
+                balls = 0;
+                strikes = 0;
+                outs = 0;
+
+                updateDisplay();
+
+                flashElement(ballCountEl);
+                flashElement(strikeCountEl);
+                flashElement(outCountEl);
+            }
+
+            ballBtn.addEventListener('click', () => {
+                balls++;
+                if (balls === 4) {
+                    setTimeout(resetBatter, 250);
+                }
+
+                updateDisplay();
+                flashElement(ballCountEl);
+            });
+
+            strikeBtn.addEventListener('click', () => {
+                strikes++;
+                if (strikes === 3) {
+                    setTimeout(resetBatter, 250);
+                }
+
+                updateDisplay();
+                flashElement(strikeCountEl);
+            });
+
+            outBtn.addEventListener('click', () => {
+                outs++;
+                if (outs === 3) {
+                    setTimeout(resetHalfInning, 250);
+                } else {
+                    setTimeout(resetBatter, 250);
+                }
+
+                updateDisplay();
+                flashElement(outCountEl);
+            });
+
+            nextInningBtn.addEventListener('click', () => {
+                innings++;
+                if (innings > 9) {
+                    innings = 0; // Extra innings
+                }
+                
+                resetHalfInning();
+
+                updateDisplay();
+                flashElement(inningCountEl);
+            });
+
+            updateDisplay();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# File di sistema macOS e Windows
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Cartelle degli editor di codice
+.vscode/
+.idea/
+
+# File temporanei o di log
+*.log
+*.tmp
