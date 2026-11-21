@@ -2,7 +2,7 @@
 
 **BCA (Baseball Counter App)** è una web app leggera, veloce e installabile (PWA) pensata per arbitri, allenatori, segnapunti e appassionati di baseball. Permette di gestire facilmente il conteggio dei lanci, il conto a casa, out, innings e il tabellone segnapunti durante le partite, **funzionando anche completamente offline**.
 
-🔗 **Prova l'app online:** [https://github.com/Roby-xxx/baseball-counter-app](https://github.com/Roby-xxx/baseball-counter-app)
+🔗 **Prova l'app online:** [https://roby-xxx.github.io/baseball-counter-app](https://roby-xxx.github.io/baseball-counter-app)
 
 ---
 
