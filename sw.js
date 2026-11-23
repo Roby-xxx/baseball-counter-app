@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bca-v1.1';
+const CACHE_NAME = 'bca-v1.2';
 const FILES_TO_CACHE = [
   './',
   './index.html',
@@ -10,6 +10,8 @@ const FILES_TO_CACHE = [
   './tailwind.js',
   './manifest.json',
   './icon.png',
+  './wakelock.js',
+  './app-ui.css',
   './fonts.css',
   './fonts/inter-400.ttf',
   './fonts/inter-600.ttf',

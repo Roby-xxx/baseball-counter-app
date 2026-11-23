@@ -1,0 +1,95 @@
+/* Evita il pull-to-refresh accidentale su tutte le pagine */
+html, body {
+  overscroll-behavior-y: contain;
+}
+
+/* Evita lo zoom sul doppio tocco e la selezione testo sui pulsanti */
+button {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Stile del puntino verde (in alto a destra) */
+#wakelock-status {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+#wakelock-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #666;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#wakelock-dot.active {
+  background-color: #2ecc71;
+  box-shadow: 0 0 6px #2ecc71;
+}
+/* Contenitore testo + switch */
+.wakelock-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Dimensioni dello switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+}
+
+/* Nasconde la checkbox standard */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Sfondo dello switch (SPENTO - pallino a sinistra) */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: background-color 0.3s;
+}
+
+/* Il pallino bianco mobile */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+}
+
+/* Sfondo dello switch quando è ACCESO (verde coordinato al LED) */
+.switch input:checked + .slider {
+  background-color: #2ecc71;
+}
+
+/* Sposta il pallino a DESTRA quando è attivo */
+.switch input:checked + .slider:before {
+  transform: translateX(22px);
+}

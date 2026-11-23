@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="./manifest.json">
     <link rel="stylesheet" href="./fonts.css">
+
+    <!-- Collegamento al manifest (Android/Chrome/Edge) -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Supporto specifico per iOS (iPhone / iPad) -->
+    <link rel="apple-touch-icon" href="./icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BB Counter">
+    <link rel="stylesheet" href="./app-ui.css"> 
+    <script src="./wakelock.js" defer></script>
     
     <title>Baseball Counter App</title>
 
@@ -33,7 +45,7 @@
             color:var(--text);
             transition:.3s;
             min-height:100vh;
-            padding:50px 20px;
+            padding:30px 20px;
         }
         .container{
             max-width:400px;
@@ -47,7 +59,7 @@
             justify-content:center;
             align-items:center;
             gap:12px;
-            margin-bottom:30px;
+            margin-bottom:10px;
         }
         .theme-toggle{
             position:relative;
@@ -104,7 +116,8 @@
 
 <body>
     <div class="container">
-        <h1>⚾ Baseball Counter App</h1>
+        <img src="./icon.png" alt="BCA Logo" style="width: 54px; height: 54px; margin: auto; margin-right: 0;">
+        <h1>Baseball Counter App</h1>
         <div class="theme-container">
             <span>☀️</span>
             <button id="theme-toggle" class="theme-toggle">
@@ -122,8 +135,16 @@
 
             <a href="AdvancedStrikeCounter.html" class="menu-btn">Advanced Strike Counter</a>
 
-            <a href="readme.html" class="menu-btn" style="margin: auto; margin-top: 15%; max-width: 60%; min-width: 50%;">Readme</a>
+            <a href="readme.html" class="menu-btn" style="margin: auto; margin-top: 15%; max-width: 60%; min-width: 50%;">Readme</a>            
         </div>
+        <div class="wakelock-control" style="margin-top: 15%;">
+            <span style="color: #246db5; font-weight: bold;">Stay awake</span>
+            <label class="switch">
+                <input type="checkbox" id="toggle-wakelock">
+                <span class="slider"></span>
+            </label>
+        </div>
+
     </div>
 
     <script>

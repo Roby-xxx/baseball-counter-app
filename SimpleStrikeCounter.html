@@ -6,12 +6,10 @@
     <title>Simple Strike Counter</title>
 
     <script src="./tailwind.js"></script>
-
-    <script>
-        tailwind.config = {darkMode: 'class'}
-    </script>
-
+    <script>tailwind.config = {darkMode: 'class'}</script>
     <link rel="stylesheet" href="./fonts.css">
+    <link rel="stylesheet" href="./app-ui.css"> 
+    <script src="./wakelock.js" defer></script>
 
     <style>
         body {
@@ -229,8 +227,6 @@
                 outs++;
                 if (outs === 3) {
                     setTimeout(resetHalfInning, 250);
-                } else {
-                    setTimeout(resetBatter, 250);
                 }
 
                 updateDisplay();
