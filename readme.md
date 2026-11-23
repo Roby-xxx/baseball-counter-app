@@ -8,10 +8,10 @@
 
 ## ✨ Funzionalità principali
 
-* **Scoreboard:** Gestione del punteggio per inning (Squadra Trasferta e Casa) con calcolo automatico del totale punti (R) e possibilità di aggiungere inning extra.
-* **Pitch Counter:** Conteggio rapido di Pitches e Strikes con calcolo automatico in tempo reale della percentuale Strike Rate.
-* **Simple Strike Counter:** Gestione dei ball, strike, outs ed innings con azzeramento manuale (come il conta strike fisico).
-* **Advanced Strike Counter:** Gestione dei ball, strike, outs ed innings con aggiornamento automatico: al terzo strike azzera il conto e aggiunge un out, al terzo out avanza di mezzo inning.
+* **Scoreboard:** Tabellone segnapunti per inning con totali automatici ed extra innings.
+* **Pitch Counter:** Conteggio lanci e strike con calcolo dello Strike Rate.
+* **Simple Strike Counter:** Gestione dei balls, strikes, outs ed innings con azzeramento manuale (come il conta strike fisico).
+* **Advanced Strike Counter:** Aggiornamento automatico: al quarto ball azzera il conto, al terzo strike azzera il conto e aggiunge un out, al terzo out azzera i conti e avanza di mezzo inning. Negli altri casi NEXT BATTER azzera il conto.
 * **Modalità Chiara e Scura (Light/Dark Mode):** Interfaccia ottimizzata per la massima leggibilità sia sotto il sole del campo da gioco che in condizioni di scarsa illuminazione.
 * **100% Offline (PWA):** Grazie al Service Worker e alle risorse salvate in locale, l'app continua a funzionare anche in modalità aereo o senza connessione internet sul campo.
 
