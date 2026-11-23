@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bca-v1';
+const CACHE_NAME = 'bca-v1.1';
 const FILES_TO_CACHE = [
   './',
   './index.html',
@@ -9,7 +9,7 @@ const FILES_TO_CACHE = [
   './readme.html',
   './tailwind.js',
   './manifest.json',
-  './icona.png',
+  './icon.png',
   './fonts.css',
   './fonts/inter-400.ttf',
   './fonts/inter-600.ttf',

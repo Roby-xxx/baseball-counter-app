@@ -242,14 +242,13 @@
                 if (strikes < 2) {
                     strikes++;
                 } else {
-                    // Third strike is an out
+                    // Strikeout
                     handleOut();
                 }
                 updateUI();
             };
 
             const handleOut = () => {
-                resetCounts();
                 if (outs < 2) {
                     outs++;
                 } else {

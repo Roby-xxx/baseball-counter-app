@@ -26,9 +26,9 @@
         </div>
         <main class="w-full max-w-2xl bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-6 sm:p-8 space-y-6">
             <section>
-                <div class="flex items-center gap-3 mb-2">
-                    <img src="./icona.png" alt="BCA Logo" class="w-14 h-14 rounded-full">
-                    <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white px-3">Baseball Counter App</h2>
+                <div class="flex items-center gap-3 mb-2" style="margin-bottom: 15px;">
+                    <img src="./icon.png" alt="BCA Logo" class="w-14 h-14 rounded-full m-auto mr-0">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white px-3 m-auto ms-0">Baseball Counter App</h2>
                 </div>
                 <p class="text-gray-600 dark:text-gray-300 text-justify"><strong>BCA</strong> è una web app leggera e installabile. Permette di gestire facilmente il conteggio dei lanci, il conto a casa, outs, innings e il tabellone segnapunti, funzionante anche offline.</p>
             </section>
@@ -39,7 +39,7 @@
                     <li class="text-sm text-justify"><strong>Scoreboard:</strong> Tabellone segnapunti per inning con totali automatici ed extra innings.</li>
                     <li class="text-sm text-justify"><strong>Pitch Counter:</strong> Conteggio lanci e strike con calcolo dello Strike Rate.</li>
                     <li class="text-sm text-justify"><strong>Simple Strike Counter:</strong> Gestione dei balls, strikes, outs ed innings con azzeramento manuale (come il conta strike fisico).</li>
-                    <li class="text-sm text-justify"><strong>Advanced Strike Counter:</strong> Gestione dei balls, strikes, outs ed innings con aggiornamento automatico: al quarto ball azzera il conto, al terzo strike azzera il conto e aggiunge un out, al terzo out azzera i conti e avanza di mezzo inning.</li>
+                    <li class="text-sm text-justify"><strong>Advanced Strike Counter:</strong> Aggiornamento automatico: al quarto ball azzera il conto, al terzo strike azzera il conto e aggiunge un out, al terzo out azzera i conti e avanza di mezzo inning. Negli altri casi NEXT BATTER azzera il conto.</li>
                     <li class="text-sm text-justify"><strong>Modalità Chiara e Scura:</strong> Interfaccia ottimizzata per la massima leggibilità sia sotto il sole del campo da gioco che in condizioni di scarsa illuminazione.</li>
                     <li class="text-sm text-justify"><strong>100% Offline:</strong> Risorse memorizzate localmente.</li>
                 </ul>
@@ -75,7 +75,7 @@
                     <li class="text-sm text-justify"><strong>PWA (Manifest + Service Worker):</strong> Caching locale per l'utilizzo senza rete e installazione nativa su dispositivi mobili.</li>
                 </ul>
             </section>
-            <div class="pt-2 text-center text-xs text-gray-400">Versione 1.0 • Licenza MIT</div>
+            <div class="pt-2 text-center text-xs text-gray-400">Versione 1.1 • Licenza MIT</div>
         </main>
     </div>
     <script>
@@ -86,3 +86,119 @@
     </script>
 </body>
 </html>
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Guide</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 16px;
+      line-height: 1.5;
+    }
+
+    /* Barra superiore: pulsante Home a sinistra, Lingua a destra */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f8f9fa;
+      color: #333;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .btn:active {
+      background-color: #e2e6ea;
+    }
+
+    /* Nasconde entrambe le lingue all'inizio */
+    .lang-section {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  -- BARRA SUPERIORE 
+  <div class="top-bar">
+    -- Il tuo pulsante Home esistente a sinistra 
+    <a href="index.html" class="btn">← Home</a>
+
+    -- Pulsante cambio lingua a destra 
+    <button id="lang-toggle" class="btn" onclick="toggleLanguage()">Italiano</button>
+  </div>
+
+  -- SEZIONE IN ITALIANO 
+  <div id="content-it" class="lang-section">
+    <h1>Guida all'uso dell'App</h1>
+    <p>Benvenuto nella guida. Ecco come iniziare:</p>
+    <ul>
+      <li><strong>Passo 1:</strong> Apri il menu principale.</li>
+      <li><strong>Passo 2:</strong> Configura le tue preferenze.</li>
+    </ul>
+  </div>
+
+  -- SEZIONE IN INGLESE 
+  <div id="content-en" class="lang-section">
+    <h1>App User Guide</h1>
+    <p>Welcome to the guide. Here is how to get started:</p>
+    <ul>
+      <li><strong>Step 1:</strong> Open the main menu.</li>
+      <li><strong>Step 2:</strong> Set up your preferences.</li>
+    </ul>
+  </div>
+
+  <script>
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      const itSection = document.getElementById('content-it');
+      const enSection = document.getElementById('content-en');
+      const toggleBtn = document.getElementById('lang-toggle');
+
+      if (lang === 'it') {
+        itSection.style.display = 'block';
+        enSection.style.display = 'none';
+        document.documentElement.lang = 'it';
+        // Mostra sul pulsante l'opzione per passare all'altra lingua
+        toggleBtn.textContent = '🇬🇧 English';
+      } else {
+        itSection.style.display = 'none';
+        enSection.style.display = 'block';
+        document.documentElement.lang = 'en';
+        toggleBtn.textContent = '🇮🇹 Italiano';
+      }
+    }
+
+    // Funzione richiamata al click sul pulsante
+    function toggleLanguage() {
+      const nextLang = currentLang === 'it' ? 'en' : 'it';
+      setLanguage(nextLang);
+    }
+
+    // Impostazione automatica all'apertura della pagina
+    const browserLang = navigator.language.slice(0, 2).toLowerCase();
+    setLanguage(browserLang === 'it' ? 'it' : 'en');
+  </script>
+
+</body>
+</html>
+
+-->
