@@ -37,8 +37,8 @@ Skip the official app stores—install **BCA** directly from your phone's browse
 ## 🛠️ Tech Stack
 
 * **HTML5 & JavaScript Vanilla:** Lightweight, responsive architecture with zero heavy dependencies.
-* **Tailwind CSS (Locale):** Modern, responsive styling bundled locally to ensure offline functionality.
-* **Font Locali (Inter):** Clean, high-legibility typography with tabular numbers, bundled locally to ensure offline functionality.
+* **Tailwind CSS (Local):** Modern, responsive styling bundled locally to ensure offline functionality.
+* **Local Font (Inter):** Clean, high-legibility typography with tabular numbers, bundled locally to ensure offline functionality.
 * **PWA (Manifest + Service Worker):** Local caching for offline use and native installation on mobile devices.
 
 ---
