@@ -1,6 +1,6 @@
 {
   "name": "Baseball Counter App",
-  "short_name": "BB Counter",
+  "short_name": "Strike Counter",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",

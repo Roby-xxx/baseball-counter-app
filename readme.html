@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" class="light">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,23 @@
     <style>
         html { -webkit-tap-highlight-color: transparent; }
         body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .btn {
+          padding: 8px 14px;
+          font-size: 14px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          background-color: #f8f9fa;
+          color: #333;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        .btn:active {
+          background-color: #e2e6ea;
+        }
+        /* Nasconde entrambe le lingue all'inizio */
+        .lang-section {
+          display: none;
+        }
     </style>
     <script>
         tailwind.config = {
@@ -19,10 +36,11 @@
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
     <div class="container mx-auto p-4 sm:p-6 lg:p-8 min-h-screen flex flex-col items-center">
+      <div id="content-it" class="lang-section">
         <div class="w-full max-w-2xl flex items-center justify-between mb-6">
             <a href="./index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-gray-800 text-[#246db5] font-semibold text-sm shadow">← Home</a>
-            <h1 class="text-xl sm:text-2xl font-bold text-[#246db5]">Info & Guida App</h1>
-            <div class="w-16"></div>
+            <h1 class="text-xl sm:text-2xl font-bold text-[#246db5]">Info & Guida</h1>
+            <button id="lang-toggle" class="btn" onclick="toggleLanguage()">us 🇺🇸</button>
         </div>
         <main class="w-full max-w-2xl bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-6 sm:p-8 space-y-6">
             <section>
@@ -32,7 +50,6 @@
                 </div>
                 <p class="text-gray-600 dark:text-gray-300 text-justify"><strong>BCA</strong> è una web app leggera e installabile. Permette di gestire facilmente il conteggio dei lanci, il conto a casa, outs, innings e il tabellone segnapunti, funzionante anche offline.</p>
             </section>
-            <hr class="border-gray-200 dark:border-gray-700">
             <section>
                 <h3 class="text-sm font-bold text-[#246db5] mb-3">✨ Funzionalità principali</h3>
                 <ul class="space-y-3 text-gray-600 dark:text-gray-300">
@@ -41,7 +58,7 @@
                     <li class="text-sm text-justify"><strong>Simple Strike Counter:</strong> Gestione dei balls, strikes, outs ed innings con azzeramento manuale (come il conta strike fisico).</li>
                     <li class="text-sm text-justify"><strong>Advanced Strike Counter:</strong> Aggiornamento automatico: al quarto ball azzera il conto, al terzo strike azzera il conto e aggiunge un out, al terzo out azzera i conti e avanza di mezzo inning. Negli altri casi NEXT BATTER azzera il conto.</li>
                     <li class="text-sm text-justify"><strong>Modalità Chiara e Scura:</strong> Interfaccia ottimizzata per la massima leggibilità sia sotto il sole del campo da gioco che in condizioni di scarsa illuminazione.</li>
-                    <li class="text-sm text-justify"><strong>Modalità Sempre Attiva:</strong> Consente al dispositivo di mantenere lo schermo sempre attivo, impedendo lo spegnimento dopo un periodo di inattività.</li>
+                    <li class="text-sm text-justify"><strong>Modalità Sempre Attiva (Stay awake):</strong> Consente al dispositivo di mantenere lo schermo sempre attivo, impedendo lo spegnimento dopo un periodo di inattività (il led in alto a destra ne segnala l'attivazione).</li>
                     <li class="text-sm text-justify"><strong>100% Offline:</strong> Risorse memorizzate localmente.</li>
                 </ul>
             </section>
@@ -76,8 +93,70 @@
                     <li class="text-sm text-justify"><strong>PWA (Manifest + Service Worker):</strong> Caching locale per l'utilizzo senza rete e installazione nativa su dispositivi mobili.</li>
                 </ul>
             </section>
-            <div class="pt-2 text-center text-xs text-gray-400">Versione 1.1 • Licenza MIT</div>
+            <div class="pt-2 text-center text-xs text-gray-400">Versione 1.3 • Licenza MIT</div>
         </main>
+      </div><!-- #content-it -->
+
+      <div id="content-en" class="lang-section">
+        <div class="w-full max-w-2xl flex items-center justify-between mb-6">
+            <a href="./index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-gray-800 text-[#246db5] font-semibold text-sm shadow">← Home</a>
+            <h1 class="text-xl sm:text-2xl font-bold text-[#246db5]">Info & Guide</h1>
+            <button id="lang-toggle" class="btn" onclick="toggleLanguage()">i🇮 🇮🇹</button>
+        </div>
+        <main class="w-full max-w-2xl bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-6 sm:p-8 space-y-6">
+            <section>
+                <div class="flex items-center gap-3 mb-2" style="margin-bottom: 15px;">
+                    <img src="./icon.png" alt="BCA Logo" class="w-14 h-14 rounded-full m-auto mr-0">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white px-3 m-auto ms-0">Baseball Counter App</h2>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 text-justify"><strong>BCA</strong> è una web app leggera e installabile. Permette di gestire facilmente il conteggio dei lanci, il conto a casa, outs, innings e il tabellone segnapunti, funzionante anche offline.</p>
+            </section>
+            <section>
+                <h3 class="text-sm font-bold text-[#246db5] mb-3">✨ Funzionalità principali</h3>
+                <ul class="space-y-3 text-gray-600 dark:text-gray-300">
+                    <li class="text-sm text-justify"><strong>Scoreboard:</strong> Tabellone segnapunti per inning con totali automatici ed extra innings.</li>
+                    <li class="text-sm text-justify"><strong>Pitch Counter:</strong> Conteggio lanci e strike con calcolo dello Strike Rate.</li>
+                    <li class="text-sm text-justify"><strong>Simple Strike Counter:</strong> Gestione dei balls, strikes, outs ed innings con azzeramento manuale (come il conta strike fisico).</li>
+                    <li class="text-sm text-justify"><strong>Advanced Strike Counter:</strong> Aggiornamento automatico: al quarto ball azzera il conto, al terzo strike azzera il conto e aggiunge un out, al terzo out azzera i conti e avanza di mezzo inning. Negli altri casi NEXT BATTER azzera il conto.</li>
+                    <li class="text-sm text-justify"><strong>Modalità Chiara e Scura:</strong> Interfaccia ottimizzata per la massima leggibilità sia sotto il sole del campo da gioco che in condizioni di scarsa illuminazione.</li>
+                    <li class="text-sm text-justify"><strong>Modalità Sempre Attiva:</strong> Consente al dispositivo di mantenere lo schermo sempre attivo, impedendo lo spegnimento dopo un periodo di inattività (il led in alto a destra ne segnala l'attivazione).</li>
+                    <li class="text-sm text-justify"><strong>100% Offline:</strong> Risorse memorizzate localmente.</li>
+                </ul>
+            </section>
+            <hr class="border-gray-200 dark:border-gray-700">
+            <section>
+                <h3 class="text-sm font-bold text-[#246db5] mb-3">📱 Come installarla sul telefono</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl">
+                        <h4 class="font-bold text-gray-900 dark:text-white mb-1.5">Android (Chrome)</h4>
+                        <ol class="text-sm text-gray-600 dark:text-gray-300 space-y-1 list-decimal list-inside">
+                            <li>Apri l'app su Chrome</li>
+                            <li>Tocca i <strong>tre puntini</strong></li>
+                            <li>Seleziona <strong>Installa app</strong> o <strong>Aggiungi a schermata Home</strong></li>
+                        </ol>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl">
+                        <h4 class="font-bold text-gray-900 dark:text-white mb-1.5">iPhone / iPad (Safari)</h4>
+                        <ol class="text-sm text-gray-600 dark:text-gray-300 space-y-1 list-decimal list-inside">
+                            <li>Apri l'app su Safari</li>
+                            <li>Tocca <strong>Condividi</strong></li>
+                            <li>Seleziona <strong>Aggiungi alla schermata Home</strong></li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h3 class="text-sm font-bold text-[#246db5] mb-3">Tecnologie utilizzate</h3>
+                <ul class="text-justify">
+                    <li class="text-sm text-justify"><strong>HTML5 & JavaScript Vanilla:</strong> Struttura leggera e reattiva senza dipendenze pesanti.</li>
+                    <li class="text-sm text-justify"><strong>Tailwind CSS (Locale):</strong> Stile moderno e responsive caricato localmente per garantire il funzionamento offline.</li>
+                    <li class="text-sm text-justify"><strong>Font Locali (Inter):</strong> Tipografia pulita e ad alta leggibilità con numeri tabellari, caricato localmente per garantire il funzionamento offline.</li>
+                    <li class="text-sm text-justify"><strong>PWA (Manifest + Service Worker):</strong> Caching locale per l'utilizzo senza rete e installazione nativa su dispositivi mobili.</li>
+                </ul>
+            </section>
+            <div class="pt-2 text-center text-xs text-gray-400">Version 1.3 • License MIT</div>
+        </main>
+      </div><!-- #content-en -->
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -85,121 +164,39 @@
             document.documentElement.classList.toggle('dark', localStorage.getItem('theme') === 'dark');
         });
     </script>
-</body>
-</html>
+    <script>
+      let currentLang = 'en';
 
-<!--
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>App Guide</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      margin: 0;
-      padding: 16px;
-      line-height: 1.5;
-    }
+      function setLanguage(lang) {
+        currentLang = lang;
+        const itSection = document.getElementById('content-it');
+        const enSection = document.getElementById('content-en');
+        const toggleBtn = document.getElementById('lang-toggle');
 
-    /* Barra superiore: pulsante Home a sinistra, Lingua a destra */
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #e0e0e0;
-    }
-
-    .btn {
-      padding: 8px 14px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      background-color: #f8f9fa;
-      color: #333;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .btn:active {
-      background-color: #e2e6ea;
-    }
-
-    /* Nasconde entrambe le lingue all'inizio */
-    .lang-section {
-      display: none;
-    }
-  </style>
-</head>
-<body>
-
-  -- BARRA SUPERIORE 
-  <div class="top-bar">
-    -- Il tuo pulsante Home esistente a sinistra 
-    <a href="index.html" class="btn">← Home</a>
-
-    -- Pulsante cambio lingua a destra 
-    <button id="lang-toggle" class="btn" onclick="toggleLanguage()">Italiano</button>
-  </div>
-
-  -- SEZIONE IN ITALIANO 
-  <div id="content-it" class="lang-section">
-    <h1>Guida all'uso dell'App</h1>
-    <p>Benvenuto nella guida. Ecco come iniziare:</p>
-    <ul>
-      <li><strong>Passo 1:</strong> Apri il menu principale.</li>
-      <li><strong>Passo 2:</strong> Configura le tue preferenze.</li>
-    </ul>
-  </div>
-
-  -- SEZIONE IN INGLESE 
-  <div id="content-en" class="lang-section">
-    <h1>App User Guide</h1>
-    <p>Welcome to the guide. Here is how to get started:</p>
-    <ul>
-      <li><strong>Step 1:</strong> Open the main menu.</li>
-      <li><strong>Step 2:</strong> Set up your preferences.</li>
-    </ul>
-  </div>
-
-  <script>
-    let currentLang = 'en';
-
-    function setLanguage(lang) {
-      currentLang = lang;
-      const itSection = document.getElementById('content-it');
-      const enSection = document.getElementById('content-en');
-      const toggleBtn = document.getElementById('lang-toggle');
-
-      if (lang === 'it') {
-        itSection.style.display = 'block';
-        enSection.style.display = 'none';
-        document.documentElement.lang = 'it';
-        // Mostra sul pulsante l'opzione per passare all'altra lingua
-        toggleBtn.textContent = '🇬🇧 English';
-      } else {
-        itSection.style.display = 'none';
-        enSection.style.display = 'block';
-        document.documentElement.lang = 'en';
-        toggleBtn.textContent = '🇮🇹 Italiano';
+        if (lang === 'it') {
+          itSection.style.display = 'block';
+          enSection.style.display = 'none';
+          document.documentElement.lang = 'it';
+          // Mostra sul pulsante l'opzione per passare all'altra lingua
+          toggleBtn.textContent = 'us 🇺🇸';
+        } else {
+          itSection.style.display = 'none';
+          enSection.style.display = 'block';
+          document.documentElement.lang = 'en';
+          toggleBtn.textContent = 'i🇮 🇮🇹';
+        }
       }
-    }
 
-    // Funzione richiamata al click sul pulsante
-    function toggleLanguage() {
-      const nextLang = currentLang === 'it' ? 'en' : 'it';
-      setLanguage(nextLang);
-    }
+      // Funzione richiamata al click sul pulsante
+      function toggleLanguage() {
+        const nextLang = currentLang === 'it' ? 'en' : 'it';
+        setLanguage(nextLang);
+      }
 
-    // Impostazione automatica all'apertura della pagina
-    const browserLang = navigator.language.slice(0, 2).toLowerCase();
-    setLanguage(browserLang === 'it' ? 'it' : 'en');
-  </script>
+      // Impostazione automatica all'apertura della pagina
+      const browserLang = navigator.language.slice(0, 2).toLowerCase();
+      setLanguage(browserLang === 'it' ? 'it' : 'en');
+    </script>
 
 </body>
 </html>
-
--->
