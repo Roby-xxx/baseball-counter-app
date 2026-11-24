@@ -1,48 +1,48 @@
 # ⚾ BCA - Baseball Counter App
 
-**BCA (Baseball Counter App)** è una web app leggera, veloce e installabile (PWA) pensata per arbitri, allenatori, segnapunti e appassionati di baseball. Permette di gestire facilmente il conteggio dei lanci, il conto a casa, out, innings e il tabellone segnapunti durante le partite, **funzionando anche completamente offline**.
+**BCA (Baseball Counter App)** It’s a lightweight, fast, and installable web app (PWA) designed for umpires, coaches, scorekeepers, and baseball fans. It makes it easy to track pitch counts, the count at the plate, outs, innings, and the scoreboard during games **and it works completely offline**.
 
 🔗 **Prova l'app online:** [https://roby-xxx.github.io/baseball-counter-app](https://roby-xxx.github.io/baseball-counter-app)
 
 ---
 
-## ✨ Funzionalità principali
+## ✨ Key Features
 
-* **Scoreboard:** Tabellone segnapunti per inning con totali automatici ed extra innings.
-* **Pitch Counter:** Conteggio lanci e strike con calcolo dello Strike Rate.
-* **Simple Strike Counter:** Gestione dei balls, strikes, outs ed innings con azzeramento manuale (come il conta strike fisico).
-* **Advanced Strike Counter:** Aggiornamento automatico: al quarto ball azzera il conto, al terzo strike azzera il conto e aggiunge un out, al terzo out azzera i conti e avanza di mezzo inning. Negli altri casi NEXT BATTER azzera il conto.
-* **Modalità Chiara e Scura (Light/Dark Mode):** Interfaccia ottimizzata per la massima leggibilità sia sotto il sole del campo da gioco che in condizioni di scarsa illuminazione.
-* **Modalità Sempre Attiva (Stay awake):** Consente al dispositivo di mantenere lo schermo sempre attivo, impedendo lo spegnimento dopo un periodo di inattività.
-* **100% Offline (PWA):** Grazie al Service Worker e alle risorse salvate in locale, l'app continua a funzionare anche in modalità aereo o senza connessione internet sul campo.
+* **Scoreboard:** Inning-by-inning scoreboard with automatic totals and extra innings.
+* **Pitch Counter:** Pitch and strike counter with Strike Rate calculation.
+* **Simple Strike Counter:** Balls, strikes, outs, and innings tracking with manual reset (just like a physical umpire indicator).
+* **Advanced Strike Counter:** Automatic updates: on the fourth ball, resets the count; on the third strike, resets the count and adds an out; on the third out, resets all counts and advances a half-inning. In all other cases, NEXT BATTER resets the count.
+* **Modalità Chiara e Scura (Light/Dark Mode):** Interface optimized for maximum readability both in bright sunlight on the field and in low-light conditions.
+* **Modalità Sempre Attiva (Stay awake):** Keeps the device screen awake, preventing it from turning off due to inactivity (indicated by the green LED in the top-right corner).
+* **100% Offline (PWA):** Thanks to the Service Worker and locally cached assets, the app keeps working even in airplane mode or without an internet connection on the field.
 
 ---
 
 ## 📱 Come installare l'app sul telefono
 
-Non serve passare dagli store ufficiali. Puoi installare **BCA** direttamente dal browser del tuo smartphone:
+Skip the official app stores—install **BCA** directly from your phone's browser:
 
 ### Su Android (Chrome)
-1. Apri il link dell'app su Google Chrome.
-2. Tocca i **tre puntini** in alto a destra.
-3. Seleziona **Installa app** o **Aggiungi a schermata Home**.
+1. Open the link app in Chrome.
+2. Tap the **three dots** in the top-right corner.
+3. Select **Install app** or **Add to Home screen**.
 
 ### Su iPhone / iPad (Safari)
-1. Apri il link dell'app su Safari.
-2. Tocca l'icona di **Condivisione** in basso (il quadrato con la freccia verso l'alto).
-3. Scorri verso il basso e seleziona **Aggiungi alla schermata Home**.
+1. Open the link app in Safari.
+2. Tap the **Share**.
+3. Select **Add to Home Screen**.
 
 ---
 
-## 🛠️ Tecnologie utilizzate
+## 🛠️ Tech Stack
 
-* **HTML5 & JavaScript Vanilla:** Struttura leggera e reattiva senza dipendenze pesanti.
-* **Tailwind CSS (Locale):** Stile moderno e responsive caricato localmente per garantire il funzionamento offline.
-* **Font Locali (Inter):** Tipografia pulita e ad alta leggibilità con numeri tabellari.
-* **PWA (Manifest + Service Worker):** Caching locale per l'utilizzo senza rete e installazione nativa su dispositivi mobili.
+* **HTML5 & JavaScript Vanilla:** Lightweight, responsive architecture with zero heavy dependencies.
+* **Tailwind CSS (Locale):** Modern, responsive styling bundled locally to ensure offline functionality.
+* **Font Locali (Inter):** Clean, high-legibility typography with tabular numbers, bundled locally to ensure offline functionality.
+* **PWA (Manifest + Service Worker):** Local caching for offline use and native installation on mobile devices.
 
 ---
 
 ## 📄 Licenza
 
-Questo progetto è distribuito sotto licenza MIT. Sentiti libero di utilizzarlo e adattarlo per le tue partite!
+This project is licensed under the MIT License. Feel free to use and customize it for your games!
