@@ -67,7 +67,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex items-center justify-center p-4 transition-colors duration-500">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex items-center justify-center p-2 transition-colors duration-500">
 
     <div class="w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 flex flex-col space-y-6 transition-colors duration-500">
         <div class="w-full max-w-md mx-auto flex justify-start">
@@ -89,7 +89,7 @@
             <div id="inning-number" class="text-5xl font-extrabold">1</div>
         </div>
          <!-- Main Display: Counts -->
-        <main class="flex-grow flex flex-col justify-center bg-[var(--card-bg)] rounded-2xl shadow-2xl p-6 transition-colors duration-300">
+        <main class="flex-grow flex flex-col justify-center bg-[var(--card-bg)] rounded-2xl shadow-2xl p-4 transition-colors duration-300">
             <!-- Outs -->
             <div class="text-center mb-2">
                 <h2 class="text-2xl font-bold tracking-wider uppercase text-[var(--text-secondary)] transition-colors duration-300">Outs</h2>
@@ -147,14 +147,14 @@
             // Theme global from index
             document.documentElement.classList.toggle('dark', localStorage.getItem('theme') === 'dark');
 
-            // --- STATE (Caricamento da localStorage se disponibile) ---
+            // Caricamento da localStorage se disponibile
             let balls = parseInt(localStorage.getItem('adv_balls'), 10) || 0;
             let strikes = parseInt(localStorage.getItem('adv_strikes'), 10) || 0;
             let outs = parseInt(localStorage.getItem('adv_outs'), 10) || 0;
             let inning = parseInt(localStorage.getItem('adv_inning'), 10) || 1;
             let isTopInning = localStorage.getItem('adv_isTopInning') !== null ? JSON.parse(localStorage.getItem('adv_isTopInning')) : true;
 
-            // --- DOM ELEMENTS ---
+            // DOM Elements
             const ballBtn = document.getElementById('ball-btn');
             const strikeBtn = document.getElementById('strike-btn');
             const outBtn = document.getElementById('out-btn');
@@ -167,7 +167,7 @@
             const strikeIndicators = document.querySelectorAll('#strikes-indicators .indicator');
             const outIndicators = document.querySelectorAll('#outs-indicators .indicator');
 
-            // --- FUNZIONE DI SALVATAGGIO ---
+            // Salvataggio dati
             const saveData = () => {
                 localStorage.setItem('adv_balls', balls);
                 localStorage.setItem('adv_strikes', strikes);

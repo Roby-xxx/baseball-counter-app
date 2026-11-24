@@ -54,7 +54,6 @@
             }
         }
     </script>
-
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
 
@@ -150,11 +149,11 @@
         
             let totalInnings = 9;
         
-            // Funzione per aggiungere un nuovo inning (colonna)
+            // Funzione per aggiungere un nuovo inning
             const addInningColumn = (roadVal = '', homeVal = '') => {
                 totalInnings++;
             
-                // 1. Aggiungi intestazione th prima della colonna "R"
+                // Aggiungi intestazione th prima della colonna "R"
                 const rHeader = headerRow.lastElementChild;
                 const newTh = document.createElement('th');
                 newTh.scope = 'col';
@@ -162,13 +161,13 @@
                 newTh.textContent = totalInnings;
                 headerRow.insertBefore(newTh, rHeader);
             
-                // 2. Aggiungi input per Trasferta (Road) prima del totale
+                // Aggiungi input per Trasferta (Road) prima del totale
                 const roadTotalTd = roadRow.lastElementChild;
                 const newRoadTd = document.createElement('td');
                 newRoadTd.innerHTML = `<input type="number" min="0" value="${roadVal}" class="inning-score road-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded">`;
                 roadRow.insertBefore(newRoadTd, roadTotalTd);
             
-                // 3. Aggiungi input per Casa (Home) prima del totale
+                // Aggiungi input per Casa (Home) prima del totale
                 const homeTotalTd = homeRow.lastElementChild;
                 const newHomeTd = document.createElement('td');
                 newHomeTd.innerHTML = `<input type="number" min="0" value="${homeVal}" class="inning-score home-score w-full h-full bg-transparent text-center focus:outline-none focus:ring-2 focus:ring-[#246db5] rounded">`;
@@ -247,7 +246,7 @@
                 const data = JSON.parse(saved);
                 const savedInnings = data.totalInnings || 9;
             
-                // Ricrea gli inning extra salvati (dalla 10 in poi)
+                // Ricrea gli inning extra salvati
                 for (let i = 10; i <= savedInnings; i++) {
                     const index = i - 1;
                     addInningColumn(data.roadScores?.[index] || '', data.homeScores?.[index] || '');

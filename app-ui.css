@@ -10,7 +10,7 @@ button {
   -webkit-user-select: none;
 }
 
-/* Stile del puntino verde (in alto a destra) */
+/* Stile del LED verde in alto a destra */
 #wakelock-status {
   position: fixed;
   top: 20px;
@@ -32,7 +32,7 @@ button {
   background-color: #2ecc71;
   box-shadow: 0 0 6px #2ecc71;
 }
-/* Contenitore testo + switch */
+/* Contenitore testo + toggle */
 .wakelock-control {
   display: inline-flex;
   align-items: center;
@@ -42,7 +42,7 @@ button {
   -webkit-user-select: none;
 }
 
-/* Dimensioni dello switch */
+/* Dimensioni del toggle */
 .switch {
   position: relative;
   display: inline-block;
@@ -57,7 +57,7 @@ button {
   height: 0;
 }
 
-/* Sfondo dello switch (SPENTO - pallino a sinistra) */
+/* Sfondo del toggle (Spento - pallino a sinistra) */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -70,7 +70,7 @@ button {
   transition: background-color 0.3s;
 }
 
-/* Il pallino bianco mobile */
+/* Il cursore bianco mobile */
 .slider:before {
   position: absolute;
   content: "";
@@ -84,12 +84,12 @@ button {
   transition: transform 0.3s;
 }
 
-/* Sfondo dello switch quando è ACCESO (verde coordinato al LED) */
+/* Sfondo dello toggle quando è Acceso (verde coordinato al LED) */
 .switch input:checked + .slider {
   background-color: #2ecc71;
 }
 
-/* Sposta il pallino a DESTRA quando è attivo */
+/* Sposta il cursore a Destra quando è attivo */
 .switch input:checked + .slider:before {
   transform: translateX(22px);
 }

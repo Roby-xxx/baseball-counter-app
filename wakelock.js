@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Crea il puntino LED in alto a destra su tutte le pagine
+  // Crea il  LED in alto a destra su tutte le pagine
   const statusDiv = document.createElement('div');
   statusDiv.id = 'wakelock-status';
   const dot = document.createElement('span');
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return saved === null ? true : saved === 'true';
   }
 
-  // Attiva lo schermo acceso
+  // Attiva lo Stay awake
   async function attivaSchermoAcceso() {
     if (!isWakeLockEnabled()) return; // Se disattivato dall'utente, non fa nulla
 
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Disattiva lo schermo acceso
+  // Disattiva lo Stay awake
   async function disattivaSchermoAcceso() {
     if (wakeLock) {
       await wakeLock.release();
