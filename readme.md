@@ -12,8 +12,8 @@
 * **Pitch Counter:** Pitch and strike counter with Strike Rate calculation.
 * **Simple Strike Counter:** Balls, strikes, outs, and innings tracking with manual reset (just like a physical umpire indicator).
 * **Advanced Strike Counter:** Automatic updates: on the fourth ball, resets the count; on the third strike, resets the count and adds an out; on the third out, resets all counts and advances a half-inning. In all other cases, NEXT BATTER resets the count.
-* **Modalità Chiara e Scura (Light/Dark Mode):** Interface optimized for maximum readability both in bright sunlight on the field and in low-light conditions.
-* **Modalità Sempre Attiva (Stay awake):** Keeps the device screen awake, preventing it from turning off due to inactivity (indicated by the green LED in the top-right corner).
+* **Light/Dark Mode:** Interface optimized for maximum readability both in bright sunlight on the field and in low-light conditions.
+* **Stay awake Mode:** Keeps the device screen awake, preventing it from turning off due to inactivity (indicated by the green LED in the top-right corner).
 * **100% Offline (PWA):** Thanks to the Service Worker and locally cached assets, the app keeps working even in airplane mode or without an internet connection on the field.
 
 ---
