@@ -1,12 +1,12 @@
 # ⚾ BCA - Baseball Counter App
-
+<!--
   <p align="center">
     ·
     <a href="https://github.com/Roby_xxx/baseball-counter-app/issues">Report Bug</a>
     ·
     <a href="https://github.com/Roby_xxx/baseball-counter-app/issues">Request Feature</a>
   </p>
-
+-->
 
 **BCA (Baseball Counter App)** It’s a lightweight, fast, and installable web app (PWA) designed for umpires, coaches, scorekeepers, and baseball fans. It makes it easy to track pitch counts, the count at the plate, outs, innings, and the scoreboard during games **and it works completely offline**.
 
