@@ -1,5 +1,13 @@
 # ⚾ BCA - Baseball Counter App
 
+  <p align="center">
+    ·
+    <a href="https://github.com/Roby_xxx/baseball-counter-app/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/Roby_xxx/baseball-counter-app/issues">Request Feature</a>
+  </p>
+
+
 **BCA (Baseball Counter App)** It’s a lightweight, fast, and installable web app (PWA) designed for umpires, coaches, scorekeepers, and baseball fans. It makes it easy to track pitch counts, the count at the plate, outs, innings, and the scoreboard during games **and it works completely offline**.
 
 🔗 **Try the app online:** [https://roby-xxx.github.io/baseball-counter-app](https://roby-xxx.github.io/baseball-counter-app)
@@ -17,7 +25,16 @@
 * **100% Offline (PWA):** Thanks to the Service Worker and locally cached assets, the app keeps working even in airplane mode or without an internet connection on the field.
 
 ---
+## Screenshot
+<p align="center">
+  <img src="./docs/screenshots/home.png" width="250" alt="Schermata Home" />
+  <img src="./docs/screenshots/Scoreboard.png" width="250" alt="Scoreboard" />
+  <img src="./docs/screenshots/PitchCounter.png" width="250" alt="Pitch Counter" />
+  <img src="./docs/screenshots/SimpleStrikeCounter.png" width="250" alt="Simple Strike Counter" />
+  <img src="./docs/screenshots/AdvancedStrikeCounter.png" width="250" alt="Advanced Strike Counter" />
+</p>
 
+---
 ## 📱 How to install the app on your phone
 
 Skip the official app stores—install **BCA** directly from your phone's browser:
