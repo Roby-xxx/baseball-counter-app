@@ -1,4 +1,4 @@
-const CACHE_NAME = 'bca-v2.4';
+const CACHE_NAME = 'bca-v2.5';
 const FILES_TO_CACHE = [
   './',
   './index.html',
